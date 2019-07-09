@@ -189,15 +189,77 @@ void stu_sort::quick_sort(int *data, int pos1, int pos2)
 
 // 堆排序
 void stu_sort::heap_sort(int *data, int len)
-{}
+{
+	if( nullptr == data || len < 0 ) return;
 
+	for(int i = 0; i < len; i++)
+	{
+		heap_init(data, len - i);
+		swap(data, data + len - 1 - i);
+	}
+}
+
+void stu_sort::heap_init(int *data, int len)
+{
+	if( len <= 1) return;
+
+	int pos = len - 1;
+	for(int i = 0; i < len; i++)
+	{
+		if( data[pos - i ] > data[(pos - i) / 2])
+		{
+			swap(data + pos - i, data + ( pos -i) / 2);
+		}
+	}
+
+}
 // 计数排序
 void stu_sort::counting_sort(int *data, int len)
-{}
+{
+	if( nullptr == data || len < 0 ) return;
+
+	int max = data[0];
+	for(int i = 1; i< len ; i++)
+	{
+		if( data[i] > max)
+		max = data[i];
+	}
+
+	int* count = new int[max+1];
+	for(int i = 0; i < len; i++)
+	{
+		count[ data[i] ] += 1;
+	}
+
+	int pos = 0;
+	int i = 0;
+	while( i <= max )
+	{
+		if( count[i] != 0 )
+		{
+			data[ pos++ ] = i ;
+			count[i] --;
+		}
+		else
+		{
+			i++;
+		}
+	}
+}
 
 // 桶排序
 void stu_sort::bucker_sort(int *data, int len)
-{}
+{
+	if( nullptr == data || len < 0 ) return;
+
+	int max = data[0];
+	for(int i = 1; i< len ; i++)
+	{
+		if( data[i] > max)
+		max = data[i];
+	}
+
+}
 
 // 基数排序
 void stu_sort::radix_sort(int *data, int len)

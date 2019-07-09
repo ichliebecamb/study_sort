@@ -37,4 +37,5 @@ public:
 private:
 	void merge_sort(int *data, int pos1, int pos2);
 	void quick_sort(int *data, int pos1, int pos2);
+	void heap_init(int *data, int len);
 };
